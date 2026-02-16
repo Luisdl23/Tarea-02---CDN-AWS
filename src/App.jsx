@@ -3,7 +3,7 @@ import './App.css'
 function App() {
   return (
     <div className="container">
-      <h1 className="title">CLIMA</h1>
+      <h1 className="title">CLIMA PR 2</h1>
       <div className="card main-card">
         <h2>Guatemala</h2>
         <p className="temp">23°C</p>
