@@ -9,6 +9,11 @@ jobs:
   deploy:
     runs-on: ubuntu-latest
 
+    env:
+      AWS_REGION: ${{ secrets.AWS_REGION }}
+      EB_APP_NAME: ${{ secrets.EB_APPLICATION_NAME }}
+      EB_ENV_NAME: ${{ secrets.EB_ENVIRONMENT_NAME }}
+
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
@@ -32,30 +37,35 @@ jobs:
 
       - name: Generate version label
         id: version
-        run: echo "label=v-${GITHUB_SHA::7}-$(date +%Y%m%d%H%M%S)" >> $GITHUB_OUTPUT
+        shell: bash
+        run: |
+          SHORT_SHA=$(echo "$GITHUB_SHA" | cut -c1-7)
+          LABEL="v-${SHORT_SHA}-$(date +%Y%m%d%H%M%S)"
+          echo "label=$LABEL" >> "$GITHUB_OUTPUT"
 
       - name: Get EB S3 bucket
         id: eb_bucket
+        shell: bash
         run: |
-          BUCKET=$(aws elasticbeanstalk create-storage-location --query 'S3Bucket' 
---output text)
-          echo "bucket=$BUCKET" >> $GITHUB_OUTPUT
+          BUCKET=$(aws elasticbeanstalk create-storage-location --query "S3Bucket" --output text)
+          echo "bucket=$BUCKET" >> "$GITHUB_OUTPUT"
 
       - name: Upload bundle to S3
+        shell: bash
         run: |
-          aws s3 cp "deploy.zip" "s3://${{ steps.eb_bucket.outputs.bucket }}/${{ 
-steps.version.outputs.label }}.zip"
+          aws s3 cp deploy.zip s3://${{ steps.eb_bucket.outputs.bucket }}/${{ steps.version.outputs.label }}.zip
 
       - name: Create Elastic Beanstalk application version
+        shell: bash
         run: |
           aws elasticbeanstalk create-application-version \
-            --application-name "${{ secrets.EB_APPLICATION_NAME }}" \
+            --application-name "$EB_APP_NAME" \
             --version-label "${{ steps.version.outputs.label }}" \
-            --source-bundle "S3Bucket=${{ steps.eb_bucket.outputs.bucket }},S3Key=${{ 
-steps.version.outputs.label }}.zip"
+            --source-bundle S3Bucket=${{ steps.eb_bucket.outputs.bucket }},S3Key=${{ steps.version.outputs.label }}.zip
 
       - name: Deploy to Elastic Beanstalk environment
+        shell: bash
         run: |
           aws elasticbeanstalk update-environment \
-            --environment-name "${{ secrets.EB_ENVIRONMENT_NAME }}" \
+            --environment-name "$EB_ENV_NAME" \
             --version-label "${{ steps.version.outputs.label }}"
