@@ -17,7 +17,11 @@ jobs:
         run: docker build -t assignment03 .
 
       - name: Create deployment package
-        run: zip -r deploy.zip . -x "*.git*" "node_modules/*" ".github/*"
+        run: |
+          zip -r deploy.zip . \
+            -x "*.git*" \
+            -x "node_modules/*" \
+            -x ".github/*"
 
       - name: Configure AWS credentials
         uses: aws-actions/configure-aws-credentials@v4
@@ -33,22 +37,22 @@ jobs:
       - name: Get EB S3 bucket
         id: eb_bucket
         run: |
-          BUCKET=$(aws elasticbeanstalk create-storage-location --query S3Bucket 
+          BUCKET=$(aws elasticbeanstalk create-storage-location --query 'S3Bucket' 
 --output text)
           echo "bucket=$BUCKET" >> $GITHUB_OUTPUT
 
       - name: Upload bundle to S3
         run: |
-          aws s3 cp deploy.zip s3://${{ steps.eb_bucket.outputs.bucket }}/${{ 
-steps.version.outputs.label }}.zip
+          aws s3 cp "deploy.zip" "s3://${{ steps.eb_bucket.outputs.bucket }}/${{ 
+steps.version.outputs.label }}.zip"
 
       - name: Create Elastic Beanstalk application version
         run: |
           aws elasticbeanstalk create-application-version \
             --application-name "${{ secrets.EB_APPLICATION_NAME }}" \
             --version-label "${{ steps.version.outputs.label }}" \
-            --source-bundle S3Bucket=${{ steps.eb_bucket.outputs.bucket }},S3Key=${{ 
-steps.version.outputs.label }}.zip
+            --source-bundle "S3Bucket=${{ steps.eb_bucket.outputs.bucket }},S3Key=${{ 
+steps.version.outputs.label }}.zip"
 
       - name: Deploy to Elastic Beanstalk environment
         run: |
