@@ -1,16 +1,20 @@
-# React + Vite
+# Tarea 02 - CDN AWS
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Captura de pantalla de la pestaña "Config Syncs" de Doppler mostrando la integración con su repositorio.
+<img width="1280" height="346" alt="image" src="https://github.com/user-attachments/assets/27ceff01-89a6-4e8a-aa4e-4d42695e5ada" />
 
-Currently, two official plugins are available:
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+Captura de pantalla de sus variables de Doppler
+<img width="1280" height="419" alt="image" src="https://github.com/user-attachments/assets/cdfc11ab-d15e-493a-8339-581b8c06b0f1" />
 
-## React Compiler
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+Captura de pantalla de los secretos en GitHub
+<img width="828" height="555" alt="image" src="https://github.com/user-attachments/assets/9b1646ba-9b14-44f5-945f-bfe5dcadf1fd" />
 
-## Expanding the ESLint configuration
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+Captura de la aplicación mostrando la aplicación.
+<img width="1600" height="846" alt="image" src="https://github.com/user-attachments/assets/48557952-0a90-4bd5-9e5f-0eb774c088fd" />
+
+
+URL pública del CDN de CloudFront para acceder a la aplicación.
+https://dxa4fhoa0rz.cloudfront.net/
