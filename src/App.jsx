@@ -5,7 +5,7 @@ function App() {
     <div className="container">
       <h1 className="title">CLIMA</h1>
       <div className="card main-card">
-        <h2>Guatemala</h2>
+        <h2>Quetzaltenango</h2>
         <p className="temp">23°C</p>
         <p>Humedad: 50%</p>
         <p>Viento: 6 km/h</p>
