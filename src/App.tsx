@@ -5,7 +5,7 @@ export default function App() {
     temperature: "24°C",
     condition: "Soleado",
     humidity: "65%",
-    wind: "12 km/h"
+    wind: "15 km/h"
   };
 
   return (
@@ -46,11 +46,11 @@ export default function App() {
           paddingTop: "15px"
         }}>
           <div>
-            <strong>Humedad</strong>
+            <strong>Agua</strong>
             <p>{weather.humidity}</p>
           </div>
           <div>
-            <strong>Viento</strong>
+            <strong>Aire</strong>
             <p>{weather.wind}</p>
           </div>
         </div>
