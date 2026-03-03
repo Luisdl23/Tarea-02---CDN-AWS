@@ -1,7 +1,7 @@
 export default function App() {
 
   const weather = {
-    city: "Guatemala City",
+    city: "Guatemala",
     temperature: "24°C",
     condition: "Parcialmente Nublado",
     humidity: "65%",
