@@ -1,20 +1,13 @@
-# Tarea 02 - CDN AWS
+# Assignment-04 — Docker Hub
 
-Captura de pantalla de la pestaña "Config Syncs" de Doppler mostrando la integración con su repositorio.
-<img width="1280" height="346" alt="image" src="https://github.com/user-attachments/assets/27ceff01-89a6-4e8a-aa4e-4d42695e5ada" />
-
-
-Captura de pantalla de sus variables de Doppler
-<img width="1280" height="419" alt="image" src="https://github.com/user-attachments/assets/cdfc11ab-d15e-493a-8339-581b8c06b0f1" />
+## Captura de la aplicación
+![bba4c63c-f7e4-4228-ae77-97dbb0056059](https://github.com/user-attachments/assets/a6e45173-c8a0-4577-819b-3736e673f7db)
 
 
-Captura de pantalla de los secretos en GitHub
-<img width="828" height="555" alt="image" src="https://github.com/user-attachments/assets/9b1646ba-9b14-44f5-945f-bfe5dcadf1fd" />
+
+## URL de la imagen en Docker Hub
+[https://hub.docker.com/r/quique23/assignment-04](https://hub.docker.com/r/quique23/assignment-04)
 
 
-Captura de la aplicación mostrando la aplicación.
-<img width="1600" height="846" alt="image" src="https://github.com/user-attachments/assets/48557952-0a90-4bd5-9e5f-0eb774c088fd" />
-
-
-URL pública del CDN de CloudFront para acceder a la aplicación.
-https://dxa4fhoa0rz.cloudfront.net/
+## Captura de imágenes y tags en Docker Hub
+![f04b58cf-e75d-4262-96df-219659de9653](https://github.com/user-attachments/assets/73a8351c-3db6-4c87-ac00-cf2c3ef84294)
