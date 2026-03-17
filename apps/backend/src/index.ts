@@ -3,7 +3,6 @@ import express from "express";
 import cors from "cors";
 import swaggerUi from "swagger-ui-express";
 import swaggerJsdoc from "swagger-jsdoc";
-import { Pool } from "pg";
 import { PrismaPg } from "@prisma/adapter-pg";
 import { PrismaClient } from "../generated/prisma/client";
 
@@ -15,11 +14,10 @@ if (!connectionString) {
   throw new Error("DATABASE_URL no está definida");
 }
 
-const pool = new Pool({
+const adapter = new PrismaPg({
   connectionString,
 });
 
-const adapter = new PrismaPg(pool);
 const prisma = new PrismaClient({ adapter });
 
 const swaggerOptions = {
@@ -28,17 +26,17 @@ const swaggerOptions = {
     info: {
       title: "Tasks API",
       version: "1.0.0",
-      description: "API para gestión de tareas"
+      description: "API para gestión de tareas",
     },
     servers: [
       {
         url: process.env.VERCEL_URL
           ? `https://${process.env.VERCEL_URL}`
-          : "http://localhost:3001"
-      }
-    ]
+          : "http://localhost:3001",
+      },
+    ],
   },
-  apis: ["./src/index.ts"]
+  apis: ["./src/index.ts"],
 };
 
 const swaggerSpec = swaggerJsdoc(swaggerOptions);
@@ -98,7 +96,7 @@ app.post("/tasks", async (req, res) => {
     }
 
     const newTask = await prisma.task.create({
-      data: { title }
+      data: { title },
     });
 
     res.status(201).json(newTask);
