@@ -3,10 +3,11 @@ import express from "express";
 import cors from "cors";
 import swaggerUi from "swagger-ui-express";
 import swaggerJsdoc from "swagger-jsdoc";
+import { Pool } from "pg";
 import { PrismaPg } from "@prisma/adapter-pg";
 import { PrismaClient } from "../generated/prisma/client";
 
-console.log("INICIANDO SERVIDOR...");
+const app = express();
 
 const connectionString = process.env.DATABASE_URL;
 
@@ -14,10 +15,12 @@ if (!connectionString) {
   throw new Error("DATABASE_URL no está definida");
 }
 
-const adapter = new PrismaPg({ connectionString });
-const prisma = new PrismaClient({ adapter });
+const pool = new Pool({
+  connectionString,
+});
 
-const app = express();
+const adapter = new PrismaPg(pool);
+const prisma = new PrismaClient({ adapter });
 
 const swaggerOptions = {
   definition: {
@@ -29,7 +32,9 @@ const swaggerOptions = {
     },
     servers: [
       {
-        url: "http://localhost:3001"
+        url: process.env.VERCEL_URL
+          ? `https://${process.env.VERCEL_URL}`
+          : "http://localhost:3001"
       }
     ]
   },
@@ -60,7 +65,7 @@ app.get("/tasks", async (_req, res) => {
     const tasks = await prisma.task.findMany();
     res.json(tasks);
   } catch (error) {
-    console.error(error);
+    console.error("Error al obtener tareas:", error);
     res.status(500).json({ error: "Error al obtener tareas" });
   }
 });
@@ -79,12 +84,10 @@ app.get("/tasks", async (_req, res) => {
  *             properties:
  *               title:
  *                 type: string
- *                 example: Hacer tarea de arquitectura
+ *                 example: Hacer tarea
  *     responses:
  *       201:
  *         description: Tarea creada correctamente
- *       400:
- *         description: El título es obligatorio
  */
 app.post("/tasks", async (req, res) => {
   try {
@@ -100,11 +103,15 @@ app.post("/tasks", async (req, res) => {
 
     res.status(201).json(newTask);
   } catch (error) {
-    console.error(error);
+    console.error("Error al crear tarea:", error);
     res.status(500).json({ error: "Error al crear tarea" });
   }
 });
 
-app.listen(3001, () => {
-  console.log("Servidor corriendo en http://localhost:3001");
-});
+if (!process.env.VERCEL) {
+  app.listen(3001, () => {
+    console.log("Servidor corriendo en http://localhost:3001");
+  });
+}
+
+export default app;
