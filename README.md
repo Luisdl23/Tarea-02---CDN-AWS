@@ -1,20 +1,11 @@
-# Tarea 02 - CDN AWS
+<img width="1607" height="71" alt="image" src="https://github.com/user-attachments/assets/cbf2637e-5485-4904-ac7c-faaf41be4fe3" /># Tarea 05 
 
-Captura de pantalla de la pestaña "Config Syncs" de Doppler mostrando la integración con su repositorio.
-<img width="1280" height="346" alt="image" src="https://github.com/user-attachments/assets/27ceff01-89a6-4e8a-aa4e-4d42695e5ada" />
+URL BACKEND 
+https://assignment05-backend-nkd814g3b-luisdl23s-projects.vercel.app/
 
+CAPTURAS DE LA BASE DE DATOS QUE CONSIDE 
 
-Captura de pantalla de sus variables de Doppler
-<img width="1280" height="419" alt="image" src="https://github.com/user-attachments/assets/cdfc11ab-d15e-493a-8339-581b8c06b0f1" />
+<img width="746" height="512" alt="image" src="https://github.com/user-attachments/assets/8d4fc4f3-a564-45a8-a8a1-e682d095aa8b" />
 
+<img width="795" height="322" alt="image" src="https://github.com/user-attachments/assets/3587245c-abfb-49d5-b0f4-bb3432487fab" />
 
-Captura de pantalla de los secretos en GitHub
-<img width="828" height="555" alt="image" src="https://github.com/user-attachments/assets/9b1646ba-9b14-44f5-945f-bfe5dcadf1fd" />
-
-
-Captura de la aplicación mostrando la aplicación.
-<img width="1600" height="846" alt="image" src="https://github.com/user-attachments/assets/48557952-0a90-4bd5-9e5f-0eb774c088fd" />
-
-
-URL pública del CDN de CloudFront para acceder a la aplicación.
-https://dxa4fhoa0rz.cloudfront.net/
