@@ -1,4 +1,4 @@
-<img width="1607" height="71" alt="image" src="https://github.com/user-attachments/assets/cbf2637e-5485-4904-ac7c-faaf41be4fe3" /># Tarea 05 
+# Tarea 05 
 
 URL BACKEND 
 https://assignment05-backend-nkd814g3b-luisdl23s-projects.vercel.app/
